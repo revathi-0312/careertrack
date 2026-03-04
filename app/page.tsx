@@ -1,11 +1,17 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ThemeToggle } from "@/components/ThemeToggle"
 
-export default function HomePage() {
+import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
+
+export default async function HomePage() {
+  const { userId } = await auth();
+  if (userId) {
+    // if already signed in, go straight to dashboard
+    redirect("/dashboard");
+  }
   return (
- <div
+    <div
       className="relative min-h-screen flex flex-col
       bg-gradient-to-br
       from-purple-300
@@ -15,14 +21,10 @@ export default function HomePage() {
       dark:via-background
       dark:to-blue-800"
     >
-      {/* ThemeToggle*/}
-       <div className="absolute top-6 right-6">
-       <ThemeToggle />
-       </div>
-      
-     {/* Hero Section */}
+
+      {/* Hero Section */}
       <section className="flex-1 flex items-center justify-center text-center px-6">
-        <div className="backdrop-blur-md bg-background/60 p-10 rounded-">
+        <div className="backdrop-blur-md bg-background/60 p-10 rounded-2xl shadow-lg max-w-xl w-full">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             CareerTrack
           </h1>
@@ -32,11 +34,7 @@ export default function HomePage() {
             monitor progress, and visualize career growth.
           </p>
 
-          <Link href="/dashboard">
-            <Button size="lg">
-              Go to Dashboard
-            </Button>
-          </Link>
+
         </div>
       </section>
 

@@ -47,8 +47,19 @@ function Button({
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
-  }) {
-  const Comp = asChild ? Slot.Root : "button"
+  } &
+  Record<string, any>) {
+  // clone and strip known non‑DOM props from whatever was passed in.  this
+  // catches redirectUrl, fallbackRedirectUrl, or any other unexpected bits.
+  const {
+    redirectUrl,
+    fallbackRedirectUrl,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    fallbackredirecturl,
+    ...cleanProps
+  } = props as Record<string, any>;
+
+  const Comp = asChild ? Slot.Root : "button";
 
   return (
     <Comp
@@ -56,9 +67,9 @@ function Button({
       data-variant={variant}
       data-size={size}
       className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
+      {...cleanProps}
     />
-  )
+  );
 }
 
 export { Button, buttonVariants }
