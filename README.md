@@ -2,7 +2,7 @@
 
 A real-time job application tracker built with Next.js, Firebase, and Clerk. Never lose track of where you applied.
 
-![CareerTrack Dashboard](https://via.placeholder.com/1200x630/0a0a0f/7c3aed?text=CareerTrack+Dashboard)
+
 
 ## ✨ Features
 
@@ -37,7 +37,7 @@ A real-time job application tracker built with Next.js, Firebase, and Clerk. Nev
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/careertrack.git
+git clone https://github.com/revathi-0312/careertrack.git
 cd careertrack
 ```
 
