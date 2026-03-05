@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
-import { subscribe } from "@/lib/jobs";
+import { subscribe } from "@/lib/jobs/stream";
 
 export async function GET() {
   const { userId } = await auth();
