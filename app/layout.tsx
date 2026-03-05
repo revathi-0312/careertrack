@@ -8,27 +8,16 @@ export const metadata: Metadata = {
   description: "Track your job applications in real time",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider
-      appearance={{
-        variables: {
-          colorPrimary: "#7c3aed",
-        },
-      }}
-    >
-      <html lang="en" suppressHydrationWarning>
-        <body className="antialiased">
-          {/* next-themes needs attribute="class" to add 'dark' to <html> */}
+    <html lang="en" suppressHydrationWarning>
+      <body className="antialiased">
+        <ClerkProvider appearance={{ variables: { colorPrimary: "#7c3aed" } }}>
           <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
             {children}
           </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }

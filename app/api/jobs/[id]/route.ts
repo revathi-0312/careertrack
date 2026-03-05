@@ -1,17 +1,15 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { updateJob } from "@/lib/jobs";
 
-interface Params {
-  params: { id: string };
-}
+type Params = { params: Promise<{ id: string }> };
 
 export async function PUT(req: NextRequest, { params }: Params) {
   const { userId } = await auth();
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const { id } = params;
+  const { id } = await params;
   const body = await req.json();
   const updated = await updateJob(userId, id, body);
   if (!updated) {

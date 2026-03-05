@@ -4,35 +4,40 @@ import { useState } from "react";
 import { useTheme } from "next-themes";
 import { Job } from "@/types/job";
 
-interface AddJobModalProps {
+interface EditJobModalProps {
+  job: Job;
   onClose: () => void;
-  onAdd: (job: Omit<Job, "id">) => Promise<void>;
+  onSave: (jobId: string, updates: Partial<Omit<Job, "id">>) => Promise<void>;
 }
 
-export function AddJobModal({ onClose, onAdd }: AddJobModalProps) {
+export function EditJobModal({ job, onClose, onSave }: EditJobModalProps) {
   const { resolvedTheme } = useTheme();
   const dark = resolvedTheme === "dark";
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
-    company: "", role: "", location: "", salary: "",
-    status: "applied" as Job["status"],
-    appliedDate: new Date().toISOString().split("T")[0],
-    notes: "", url: "",
+    company: job.company,
+    role: job.role,
+    location: job.location ?? "",
+    salary: job.salary ?? "",
+    status: job.status,
+    appliedDate: job.appliedDate,
+    notes: job.notes ?? "",
+    url: job.url ?? "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.company || !form.role) return;
     setLoading(true);
-    await onAdd({ ...form, createdAt: new Date().toISOString() });
+    await onSave(job.id, form);
     setLoading(false);
     onClose();
   };
 
-  const modalBg   = dark ? "bg-zinc-900 border-zinc-700"   : "bg-white border-zinc-200";
-  const headerBorder = dark ? "border-zinc-800"            : "border-zinc-100";
-  const titleColor   = dark ? "text-white"                 : "text-zinc-900";
-  const closeColor   = dark ? "text-zinc-500 hover:text-white" : "text-zinc-400 hover:text-zinc-900";
+  const modalBg      = dark ? "bg-zinc-900 border-zinc-700"       : "bg-white border-zinc-200";
+  const headerBorder = dark ? "border-zinc-800"                   : "border-zinc-100";
+  const titleColor   = dark ? "text-white"                        : "text-zinc-900";
+  const closeColor   = dark ? "text-zinc-500 hover:text-white"    : "text-zinc-400 hover:text-zinc-900";
   const labelClass   = `block text-xs font-medium mb-1.5 ${dark ? "text-zinc-400" : "text-zinc-600"}`;
   const inputClass   = `w-full border text-sm rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-colors ${
     dark
@@ -49,7 +54,7 @@ export function AddJobModal({ onClose, onAdd }: AddJobModalProps) {
       <div className={`relative border rounded-2xl w-full max-w-md shadow-2xl ${modalBg}`}>
 
         <div className={`flex items-center justify-between p-5 border-b ${headerBorder}`}>
-          <h2 className={`font-semibold ${titleColor}`}>Add Job Application</h2>
+          <h2 className={`font-semibold ${titleColor}`}>Edit Job Application</h2>
           <button onClick={onClose} className={`transition-colors text-lg ${closeColor}`}>✕</button>
         </div>
 
@@ -119,7 +124,7 @@ export function AddJobModal({ onClose, onAdd }: AddJobModalProps) {
             </button>
             <button type="submit" disabled={loading}
               className="flex-1 px-4 py-2.5 text-sm font-medium text-white bg-violet-600 hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors">
-              {loading ? "Adding..." : "Add Application"}
+              {loading ? "Saving..." : "Save Changes"}
             </button>
           </div>
         </form>
