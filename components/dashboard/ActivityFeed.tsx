@@ -15,11 +15,11 @@ const statusEmoji: Record<string, string> = {
 };
 
 const statusVariants: Record<JobStatus, string> = {
-  applied:   "bg-blue-500/10 text-blue-500 border-blue-500/30",
+  applied: "bg-blue-500/10 text-blue-500 border-blue-500/30",
   interview: "bg-emerald-500/10 text-emerald-500 border-emerald-500/30",
-  offer:     "bg-amber-500/10 text-amber-500 border-amber-500/30",
-  rejected:  "bg-red-500/10 text-red-500 border-red-500/30",
-  saved:     "bg-zinc-500/10 text-zinc-500 border-zinc-500/30",
+  offer: "bg-amber-500/10 text-amber-500 border-amber-500/30",
+  rejected: "bg-red-500/10 text-red-500 border-red-500/30",
+  saved: "bg-zinc-500/10 text-zinc-500 border-zinc-500/30",
 };
 
 export function ActivityFeed({ jobs }: { jobs: Job[] }) {
@@ -29,6 +29,7 @@ export function ActivityFeed({ jobs }: { jobs: Job[] }) {
 
   const recent = jobs.slice(0, 5);
   const thisWeek = jobs.filter((j) => {
+    // eslint-disable-next-line react-hooks/purity
     const diff = (Date.now() - new Date(j.appliedDate).getTime()) / (1000 * 60 * 60 * 24);
     return diff <= 7;
   }).length;

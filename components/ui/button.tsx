@@ -48,16 +48,18 @@ function Button({
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
   } &
-  Record<string, any>) {
+  Record<string, unknown>) {
   // clone and strip known non‑DOM props from whatever was passed in.  this
   // catches redirectUrl, fallbackRedirectUrl, or any other unexpected bits.
   const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     redirectUrl,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     fallbackRedirectUrl,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     fallbackredirecturl,
     ...cleanProps
-  } = props as Record<string, any>;
+  } = props as Record<string, unknown>;
 
   const Comp = asChild ? Slot.Root : "button";
 

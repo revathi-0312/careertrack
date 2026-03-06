@@ -19,10 +19,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const body = await req.json();
-  const { company, role, status } = body;
+  const { company, role, status, location, salary, appliedDate, notes, url } = body;
   if (!company || !role || !status) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
-  const job = await addJob(userId, { company, role, status });
+  const job = await addJob(userId, { company, role, status, location, salary, appliedDate, notes, url });
   return NextResponse.json(job, { status: 201 });
 }

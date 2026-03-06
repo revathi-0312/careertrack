@@ -6,7 +6,6 @@
 
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push } from "firebase/database";
-import * as dotenv from "dotenv";
 import { readFileSync } from "fs";
 
 // Load .env.local manually
@@ -17,13 +16,13 @@ envFile.split("\n").forEach((line) => {
 });
 
 const firebaseConfig = {
-  apiKey:            process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain:        process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  databaseURL:       process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
-  projectId:         process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket:     process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId:             process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
 // ── IMPORTANT: Replace this with YOUR Clerk user ID ──────────────────────────
@@ -38,74 +37,74 @@ if (YOUR_CLERK_USER_ID === "user_3AQnxVJ7vI44sq3nPrQlE8OmSXi") {
 }
 
 const app = initializeApp(firebaseConfig);
-const db  = getDatabase(app);
+const db = getDatabase(app);
 
 const sampleJobs = [
   {
-    company:     "Google",
-    role:        "Software Engineer II",
-    location:    "Mountain View, CA",
-    salary:      "$180k - $220k",
-    status:      "interview",
+    company: "Google",
+    role: "Software Engineer II",
+    location: "Mountain View, CA",
+    salary: "$180k - $220k",
+    status: "interview",
     appliedDate: daysAgo(2),
-    notes:       "Referred by a friend on the Chrome team. Technical phone screen done.",
-    url:         "https://careers.google.com",
-    createdAt:   new Date().toISOString(),
+    notes: "Referred by a friend on the Chrome team. Technical phone screen done.",
+    url: "https://careers.google.com",
+    createdAt: new Date().toISOString(),
   },
   {
-    company:     "Stripe",
-    role:        "Frontend Engineer",
-    location:    "Remote",
-    salary:      "$160k - $200k",
-    status:      "applied",
+    company: "Stripe",
+    role: "Frontend Engineer",
+    location: "Remote",
+    salary: "$160k - $200k",
+    status: "applied",
     appliedDate: daysAgo(5),
-    notes:       "Applied through their careers page. Strong interest in payments infra.",
-    url:         "https://stripe.com/jobs",
-    createdAt:   new Date().toISOString(),
+    notes: "Applied through their careers page. Strong interest in payments infra.",
+    url: "https://stripe.com/jobs",
+    createdAt: new Date().toISOString(),
   },
   {
-    company:     "Vercel",
-    role:        "Developer Advocate",
-    location:    "Remote",
-    salary:      "$140k - $170k",
-    status:      "offer",
+    company: "Vercel",
+    role: "Developer Advocate",
+    location: "Remote",
+    salary: "$140k - $170k",
+    status: "offer",
     appliedDate: daysAgo(14),
-    notes:       "Received offer! Evaluating compensation package.",
-    url:         "https://vercel.com/careers",
-    createdAt:   new Date().toISOString(),
+    notes: "Received offer! Evaluating compensation package.",
+    url: "https://vercel.com/careers",
+    createdAt: new Date().toISOString(),
   },
   {
-    company:     "Airbnb",
-    role:        "Senior React Developer",
-    location:    "San Francisco, CA",
-    salary:      "$170k - $210k",
-    status:      "rejected",
+    company: "Airbnb",
+    role: "Senior React Developer",
+    location: "San Francisco, CA",
+    salary: "$170k - $210k",
+    status: "rejected",
     appliedDate: daysAgo(20),
-    notes:       "Rejected after final round. Feedback: needed more system design experience.",
-    url:         "https://careers.airbnb.com",
-    createdAt:   new Date().toISOString(),
+    notes: "Rejected after final round. Feedback: needed more system design experience.",
+    url: "https://careers.airbnb.com",
+    createdAt: new Date().toISOString(),
   },
   {
-    company:     "Notion",
-    role:        "Full Stack Engineer",
-    location:    "Remote",
-    salary:      "$150k - $185k",
-    status:      "applied",
+    company: "Notion",
+    role: "Full Stack Engineer",
+    location: "Remote",
+    salary: "$150k - $185k",
+    status: "applied",
     appliedDate: daysAgo(1),
-    notes:       "Applied via LinkedIn. Love their product.",
-    url:         "https://notion.so/careers",
-    createdAt:   new Date().toISOString(),
+    notes: "Applied via LinkedIn. Love their product.",
+    url: "https://notion.so/careers",
+    createdAt: new Date().toISOString(),
   },
   {
-    company:     "Linear",
-    role:        "Product Engineer",
-    location:    "Remote",
-    salary:      "$145k - $175k",
-    status:      "saved",
+    company: "Linear",
+    role: "Product Engineer",
+    location: "Remote",
+    salary: "$145k - $175k",
+    status: "saved",
     appliedDate: daysAgo(0),
-    notes:       "Dream company. Haven't applied yet — polishing portfolio first.",
-    url:         "https://linear.app/careers",
-    createdAt:   new Date().toISOString(),
+    notes: "Dream company. Haven't applied yet — polishing portfolio first.",
+    url: "https://linear.app/careers",
+    createdAt: new Date().toISOString(),
   },
 ];
 

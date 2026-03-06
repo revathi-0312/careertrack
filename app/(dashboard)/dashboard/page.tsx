@@ -26,6 +26,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     if (!isLoaded) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (!user?.id) { setDbLoading(false); return; }
 
     setError(null);
@@ -43,11 +44,11 @@ export default function DashboardPage() {
           );
           setJobs(jobList);
           setStats({
-            total:      jobList.length,
-            applied:    jobList.filter(j => j.status === "applied").length,
+            total: jobList.length,
+            applied: jobList.filter(j => j.status === "applied").length,
             interviews: jobList.filter(j => j.status === "interview").length,
-            offers:     jobList.filter(j => j.status === "offer").length,
-            rejected:   jobList.filter(j => j.status === "rejected").length,
+            offers: jobList.filter(j => j.status === "offer").length,
+            rejected: jobList.filter(j => j.status === "rejected").length,
           });
         } else {
           setJobs([]);
@@ -55,7 +56,7 @@ export default function DashboardPage() {
         }
         setDbLoading(false);
       },
-      (err) => { setError(err.message); setDbLoading(false); }
+      (err: Error) => { setError(err.message); setDbLoading(false); }
     );
 
     return () => unsubscribe();
@@ -149,11 +150,10 @@ export default function DashboardPage() {
         <div className="flex gap-2 flex-wrap">
           {["all", "applied", "interview", "offer", "rejected"].map((f) => (
             <button key={f} onClick={() => setFilter(f)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium capitalize transition-all ${
-                filter === f
-                  ? "bg-violet-600 text-white"
-                  : "bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
-              }`}>
+              className={`px-4 py-1.5 rounded-full text-sm font-medium capitalize transition-all ${filter === f
+                ? "bg-violet-600 text-white"
+                : "bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+                }`}>
               {f === "all" ? `All (${jobs.length})` : f}
             </button>
           ))}

@@ -15,6 +15,7 @@ export default function DashboardLayout({
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
 
   if (!mounted) return (
@@ -31,12 +32,12 @@ export default function DashboardLayout({
       <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b transition-colors duration-300 ${dark ? "bg-[#0a0a0f]/80 border-zinc-800/60" : "bg-white/80 border-zinc-200"}`}>
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
 
-          
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center text-white text-xs font-bold">
-                CT
-              </div>
-              <span className="font-semibold text-sm">CareerTrack</span>
-            
+
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center text-white text-xs font-bold">
+            CT
+          </div>
+          <span className="font-semibold text-sm">CareerTrack</span>
+
 
           <div className="flex items-center gap-3">
             <Link href="/dashboard"

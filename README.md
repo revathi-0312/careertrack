@@ -144,6 +144,4 @@ careertrack/
 
 MIT — feel free to use this project for your own job search!
 
----
-
-Built with ❤️ by [Revathi](https://github.com/yourusername)
+Built with ❤️ by [Revathi](https://github.com/revathi-0312)

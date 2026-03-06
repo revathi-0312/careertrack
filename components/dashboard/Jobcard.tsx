@@ -5,11 +5,11 @@ import { Job, JobStatus } from "@/types/job";
 import { Badge } from "@/components/ui/badge";
 
 const statusVariants: Record<JobStatus, string> = {
-  applied:   "bg-blue-500/10 text-blue-500 border-blue-500/30 hover:bg-blue-500/20",
+  applied: "bg-blue-500/10 text-blue-500 border-blue-500/30 hover:bg-blue-500/20",
   interview: "bg-emerald-500/10 text-emerald-500 border-emerald-500/30 hover:bg-emerald-500/20",
-  offer:     "bg-amber-500/10 text-amber-500 border-amber-500/30 hover:bg-amber-500/20",
-  rejected:  "bg-red-500/10 text-red-500 border-red-500/30 hover:bg-red-500/20",
-  saved:     "bg-zinc-500/10 text-zinc-500 border-zinc-500/30 hover:bg-zinc-500/20",
+  offer: "bg-amber-500/10 text-amber-500 border-amber-500/30 hover:bg-amber-500/20",
+  rejected: "bg-red-500/10 text-red-500 border-red-500/30 hover:bg-red-500/20",
+  saved: "bg-zinc-500/10 text-zinc-500 border-zinc-500/30 hover:bg-zinc-500/20",
 };
 
 const statusLabels: Record<JobStatus, string> = {
@@ -29,6 +29,7 @@ export function JobCard({ job, onStatusChange, onDelete, onEdit }: JobCardProps)
   const [deleting, setDeleting] = useState(false);
 
   const daysAgo = Math.floor(
+    // eslint-disable-next-line react-hooks/purity
     (Date.now() - new Date(job.appliedDate).getTime()) / (1000 * 60 * 60 * 24)
   );
 
@@ -56,7 +57,7 @@ export function JobCard({ job, onStatusChange, onDelete, onEdit }: JobCardProps)
             <p className="text-sm text-zinc-500 dark:text-zinc-400">{job.company}</p>
             <div className="flex items-center gap-3 mt-1 text-xs text-zinc-400 dark:text-zinc-600">
               {job.location && <span>📍 {job.location}</span>}
-              {job.salary   && <span>💰 {job.salary}</span>}
+              {job.salary && <span>💰 {job.salary}</span>}
               <span>{daysAgo === 0 ? "Today" : `${daysAgo}d ago`}</span>
             </div>
             {job.notes && (
