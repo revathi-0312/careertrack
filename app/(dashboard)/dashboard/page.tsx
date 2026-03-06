@@ -4,7 +4,7 @@ import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { ref, onValue, push, set, remove, update } from "firebase/database";
 import { db } from "@/lib/firebase";
-import { JobCard } from "@/components/dashboard/JobCard";
+import { TestJobCard as JobCard } from "@/components/dashboard/TestJobCard";
 import { StatsCards } from "@/components/dashboard/StatsCards";
 import { AddJobModal } from "@/components/dashboard/AddJobModal";
 import { EditJobModal } from "@/components/dashboard/EditJobModal";

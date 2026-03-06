@@ -24,7 +24,7 @@ interface JobCardProps {
   onEdit: (job: Job) => void;
 }
 
-export function JobCard({ job, onStatusChange, onDelete, onEdit }: JobCardProps) {
+export function TestJobCard({ job, onStatusChange, onDelete, onEdit }: JobCardProps) {
   const [showMenu, setShowMenu] = useState(false);
   const [deleting, setDeleting] = useState(false);
 

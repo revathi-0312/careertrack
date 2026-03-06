@@ -28,7 +28,7 @@ const firebaseConfig = {
 // ── IMPORTANT: Replace this with YOUR Clerk user ID ──────────────────────────
 // Find it in: Clerk Dashboard → Users → click your user → copy the "User ID"
 // It looks like: user_2abc123xyz...
-const YOUR_CLERK_USER_ID = "PASTE_YOUR_CLERK_USER_ID_HERE";
+const YOUR_CLERK_USER_ID = "user_3AQnxVJ7vI44sq3nPrQlE8OmSXi";
 // ─────────────────────────────────────────────────────────────────────────────
 
 if (YOUR_CLERK_USER_ID === "user_3AQnxVJ7vI44sq3nPrQlE8OmSXi") {
